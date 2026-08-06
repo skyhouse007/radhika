@@ -1,0 +1,11 @@
+{
+  "name": "radhika-art-shop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Radhika Khandelwal Art & Stationery",
+  "scripts": {
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server"
+  }
+}

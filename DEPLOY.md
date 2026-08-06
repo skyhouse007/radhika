@@ -1,8 +1,37 @@
 # Render deploy
 
-## Web Service (API)
+## Why `/admin` returns 404
 
-In the Render dashboard:
+The site is a React SPA. The host must **rewrite all routes to `index.html`**.
+Without that, `https://www.radhikakhandelwal.com/admin` looks for a real `/admin` folder and fails.
+
+### Fix on Render Static Site (frontend)
+
+**Redirects / Rewrites** (Dashboard → your static site → Redirects/Rewrites):
+
+| Source | Destination | Action |
+|---|---|---|
+| `/*` | `/index.html` | **Rewrite** |
+
+Then redeploy / clear cache.
+
+### Static site settings
+
+| Setting | Value |
+|---|---|
+| Root Directory | `client` |
+| Build Command | `npm install && npm run build` |
+| Publish Directory | `dist` |
+
+Client env (Build):
+
+```
+VITE_API_URL=https://YOUR-API.onrender.com
+```
+
+(Use your real API URL, no trailing slash.)
+
+## Web Service (API)
 
 | Setting | Value |
 |---|---|
@@ -10,7 +39,7 @@ In the Render dashboard:
 | Build Command | `npm install` |
 | Start Command | `node server.js` |
 
-### Environment variables
+API env:
 
 ```
 NODE_VERSION=20
@@ -20,30 +49,10 @@ JWT_SECRET=long-random-secret
 ADMIN_EMAIL=admin@radhikakhandelwal.com
 ADMIN_PASSWORD=your-secure-password
 WHATSAPP_NUMBER=918385966614
-INSTAGRAM_URL=https://www.instagram.com/yourhandle
-CLIENT_URL=https://your-frontend.onrender.com
+INSTAGRAM_URL=https://www.instagram.com/khandelwal_radhika_/
+CLIENT_URL=https://www.radhikakhandelwal.com,https://radhikakhandelwal.com
 ```
 
-Use a real MongoDB Atlas URI. Do **not** use `USE_MEMORY_DB=true` in production.
+## Console noise
 
-After first deploy, seed once (Render Shell):
-
-```bash
-npm run seed
-```
-
-## Static Site (frontend)
-
-| Setting | Value |
-|---|---|
-| Root Directory | `client` |
-| Build Command | `npm install && npm run build` |
-| Publish Directory | `dist` |
-
-Add env var on the client (optional if same domain via proxy):
-
-```
-VITE_API_URL=https://your-api.onrender.com
-```
-
-Then set the API service `CLIENT_URL` to your static site URL.
+Messages like `Advanced image optimization module` or `Receiving end does not exist` usually come from **browser extensions**, not this app.

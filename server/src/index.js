@@ -55,9 +55,19 @@ async function start() {
   const app = express();
   const port = process.env.PORT || 5000;
 
+  const clientOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
   app.use(
     cors({
-      origin: process.env.CLIENT_URL || 'http://localhost:5173',
+      origin(origin, callback) {
+        if (!origin || clientOrigins.includes(origin) || clientOrigins.includes('*')) {
+          return callback(null, true);
+        }
+        return callback(null, clientOrigins[0] || true);
+      },
       credentials: true,
     })
   );

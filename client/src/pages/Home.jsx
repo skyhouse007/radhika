@@ -10,12 +10,13 @@ export default function Home() {
   const [workshops, setWorkshops] = useState([]);
   const [story, setStory] = useState(null);
   const [instagram, setInstagram] = useState('');
+  const [homeReady, setHomeReady] = useState(false);
 
   useEffect(() => {
     Promise.all([
       api('/api/products'),
       api('/api/journal'),
-      api('/api/workshops?featured=true'),
+      api('/api/workshops'),
       api('/api/settings'),
       api('/api/config'),
     ])
@@ -26,22 +27,21 @@ export default function Home() {
         setStory(settings);
         setInstagram(config.instagram || '');
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setHomeReady(true));
   }, []);
+
+  const heroSrc = story?.heroImage ? mediaUrl(story.heroImage) : '';
 
   return (
     <>
       <section className="hero">
         <div className="hero-visual" aria-hidden>
-          <img
-            src={
-              story?.heroImage
-                ? mediaUrl(story.heroImage)
-                : '/images/hero-mountains.png'
-            }
-            alt=""
-            className="hero-photo"
-          />
+          {homeReady && heroSrc ? (
+            <img src={heroSrc} alt="" className="hero-photo" />
+          ) : (
+            <div className="hero-photo hero-photo--pending" />
+          )}
         </div>
       </section>
 
@@ -120,16 +120,7 @@ export default function Home() {
       </section>
 
       <section className="section newsletter-section">
-        <div className="newsletter-artboard" aria-hidden>
-          <img
-            src={
-              story?.heroImage
-                ? mediaUrl(story.heroImage)
-                : '/images/hero-studio.png'
-            }
-            alt=""
-          />
-        </div>
+        <div className="newsletter-artboard" aria-hidden />
         <div className="container newsletter-block">
           <div className="newsletter-copy">
             <h2>Subscribe</h2>

@@ -23,7 +23,14 @@ router.post('/', authRequired, upload.single('image'), async (req, res) => {
       });
     }
 
-    // Local fallback when ImageKit env vars are not set
+    if (process.env.NODE_ENV === 'production') {
+      return res.status(503).json({
+        message:
+          'ImageKit is not configured on the server. Set IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, and IMAGEKIT_URL_ENDPOINT.',
+      });
+    }
+
+    // Local fallback for development only
     const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     const ext = path.extname(req.file.originalname).toLowerCase() || '.jpg';
     const filename = `${unique}${ext}`;

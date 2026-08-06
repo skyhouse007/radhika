@@ -65,13 +65,14 @@ export default function AdminStory() {
           <p className="label-text">Cover image</p>
           <div className="image-preview-row">
             <div className="image-preview hero-cover-preview">
-              <img
-                src={mediaUrl(heroImage) || '/images/hero-mountains.png'}
-                alt="Hero cover"
-              />
+              {heroImage ? (
+                <img src={mediaUrl(heroImage)} alt="Hero cover" />
+              ) : (
+                <div className="product-placeholder" aria-hidden />
+              )}
               {heroImage && (
                 <button type="button" onClick={() => setHeroImage('')}>
-                  Remove (use default)
+                  Remove
                 </button>
               )}
             </div>

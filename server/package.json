@@ -7,7 +7,8 @@
     "dev": "nodemon src/index.js",
     "start": "node server.js",
     "seed": "node src/seed.js",
-    "clear-local-images": "node src/clearLocalImages.js"
+    "clear-local-images": "node src/clearLocalImages.js",
+    "migrate-to-imagekit": "node src/migrateUploadsToImageKit.js"
   },
   "keywords": [],
   "author": "",

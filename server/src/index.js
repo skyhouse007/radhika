@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const connectDB = require('./config/db');
 const User = require('./models/User');
 const { uploadsDir } = require('./middleware/upload');
+const { isConfigured: isImageKitConfigured } = require('./lib/imagekit');
 const { seedDatabase } = require('./seedData');
 
 const authRoutes = require('./routes/auth');
@@ -101,6 +102,11 @@ async function start() {
 
   app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
+    console.log(
+      isImageKitConfigured()
+        ? 'Image uploads: ImageKit'
+        : 'Image uploads: local /uploads (set IMAGEKIT_* env vars to enable ImageKit)'
+    );
   });
 }
 

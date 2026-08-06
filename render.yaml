@@ -26,6 +26,14 @@ services:
         sync: false
       - key: CLIENT_URL
         value: https://www.radhikakhandelwal.com,https://radhikakhandelwal.com
+      - key: IMAGEKIT_PUBLIC_KEY
+        sync: false
+      - key: IMAGEKIT_PRIVATE_KEY
+        sync: false
+      - key: IMAGEKIT_URL_ENDPOINT
+        sync: false
+      - key: IMAGEKIT_FOLDER
+        value: /radhika
 
   - type: web
     name: radhika-web

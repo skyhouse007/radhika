@@ -42,9 +42,15 @@ ADMIN_PASSWORD=your-secure-password
 WHATSAPP_NUMBER=918385966614
 INSTAGRAM_URL=https://www.instagram.com/khandelwal_radhika_/
 CLIENT_URL=https://www.radhikakhandelwal.com,https://radhikakhandelwal.com
+IMAGEKIT_PUBLIC_KEY=...
+IMAGEKIT_PRIVATE_KEY=...
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_id
+IMAGEKIT_FOLDER=/radhika
 ```
 
 `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` must all be set or admin login returns 500.
+
+Admin image uploads go to **ImageKit** when the `IMAGEKIT_*` vars are set. Without them, files are stored on the server under `/uploads` (not durable on Render).
 
 ## Console noise
 

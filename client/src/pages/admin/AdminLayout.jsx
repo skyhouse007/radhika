@@ -25,7 +25,7 @@ export function AdminLayout() {
           <NavLink to="/admin/categories">Categories</NavLink>
           <NavLink to="/admin/workshops">Workshops</NavLink>
           <NavLink to="/admin/story">Homepage</NavLink>
-          <NavLink to="/admin/journal">Journal</NavLink>
+          <NavLink to="/admin/journal">Articles</NavLink>
           <NavLink to="/admin/subscribers">Subscribers</NavLink>
         </nav>
         <div className="admin-sidebar-foot">

@@ -36,7 +36,7 @@ export default function AdminDashboard() {
           <strong>{stats.categories}</strong>
         </Link>
         <Link to="/admin/journal" className="stat-card">
-          <span>Journal posts</span>
+          <span>Articles</span>
           <strong>{stats.posts}</strong>
         </Link>
         <Link to="/admin/subscribers" className="stat-card">

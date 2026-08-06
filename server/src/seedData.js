@@ -27,13 +27,14 @@ async function seedDatabase({ clear = true } = {}) {
     });
   }
 
-  const existingCategories = await Category.countDocuments();
-  if (existingCategories === 0 || clear) {
-    if (!clear && existingCategories > 0) {
+  if (!clear) {
+    const existingCategories = await Category.countDocuments();
+    if (existingCategories > 0) {
       return { email, password, seeded: false };
     }
+  }
 
-    const categories = await Category.insertMany([
+  const categories = await Category.insertMany([
       {
         name: 'Postcards',
         slug: 'postcards',
@@ -169,7 +170,6 @@ async function seedDatabase({ clear = true } = {}) {
         featured: true,
       },
     ]);
-  }
 
   return { email, password, seeded: true };
 }

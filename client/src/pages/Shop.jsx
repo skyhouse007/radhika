@@ -30,7 +30,7 @@ export default function Shop() {
     <section className="section page-top">
       <div className="container">
         <div className="page-intro">
-          <h1>{active ? active.name : 'Shop'}</h1>
+          <h1>{active ? active.name : 'Paintings'}</h1>
           <p>
             {active?.description ||
               'Postcards, greeting cards, and stationery made to live with you.'}

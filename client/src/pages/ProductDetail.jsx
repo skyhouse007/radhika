@@ -28,7 +28,7 @@ export default function ProductDetail() {
     return (
       <section className="section page-top container">
         <p>{error}</p>
-        <Link to="/shop">Back to shop</Link>
+        <Link to="/shop">Back to paintings</Link>
       </section>
     );
   }

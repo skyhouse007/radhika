@@ -37,9 +37,19 @@ async function start() {
   await connectDB();
   await ensureAdmin();
 
-  if (process.env.USE_MEMORY_DB === 'true' || process.env.AUTO_SEED === 'true') {
+  if (process.env.USE_MEMORY_DB === 'true') {
+    console.warn(
+      'WARNING: USE_MEMORY_DB=true — all admin data is temporary and will be lost when the server restarts.'
+    );
     const result = await seedDatabase({ clear: true });
     console.log(`Demo data seeded. Admin: ${result.email} / ${result.password}`);
+  } else if (process.env.AUTO_SEED === 'true') {
+    const result = await seedDatabase({ clear: false });
+    console.log(
+      result.seeded
+        ? `Seeded missing demo data. Admin: ${result.email} / ${result.password}`
+        : 'Database already has data — skipped seed.'
+    );
   }
 
   const app = express();

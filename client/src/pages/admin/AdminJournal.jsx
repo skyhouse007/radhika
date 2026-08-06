@@ -22,9 +22,9 @@ export default function AdminJournal() {
   return (
     <div className="admin-page">
       <div className="admin-page-head">
-        <h1>Journal</h1>
+        <h1>Articles</h1>
         <Link to="/admin/journal/new" className="btn btn-primary">
-          New post
+          New article
         </Link>
       </div>
       <div className="admin-table-wrap">

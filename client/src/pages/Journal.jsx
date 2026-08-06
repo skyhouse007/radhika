@@ -17,7 +17,7 @@ export default function Journal() {
     <section className="section page-top">
       <div className="container">
         <div className="page-intro">
-          <h1>Journal</h1>
+          <h1>Articles</h1>
           <p>Studio notes, collection stories, and the inspiration behind the work.</p>
         </div>
 

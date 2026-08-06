@@ -34,16 +34,16 @@ export default function Layout({ children }) {
         <div className={`header-nav ${menuOpen ? 'open' : ''}`}>
           <nav className="container site-nav">
             <NavLink to="/shop" onClick={() => setMenuOpen(false)}>
-              Shop
+              Paintings
             </NavLink>
             <NavLink to="/workshops" onClick={() => setMenuOpen(false)}>
               Workshops
             </NavLink>
             <NavLink to="/journal" onClick={() => setMenuOpen(false)}>
-              Journal
+              Articles
             </NavLink>
             <NavLink to="/about" onClick={() => setMenuOpen(false)}>
-              About
+              About me
             </NavLink>
           </nav>
         </div>
@@ -65,10 +65,10 @@ export default function Layout({ children }) {
           <div>
             <p className="footer-heading">Quick links</p>
             <div className="footer-links">
-              <Link to="/shop">Shop</Link>
+              <Link to="/shop">Paintings</Link>
               <Link to="/workshops">Workshops</Link>
-              <Link to="/journal">Journal</Link>
-              <Link to="/about">About</Link>
+              <Link to="/journal">Articles</Link>
+              <Link to="/about">About me</Link>
             </div>
           </div>
           <div>

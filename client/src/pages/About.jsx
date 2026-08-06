@@ -19,7 +19,7 @@ export default function About() {
       <div className="container about-layout">
         <div className="about-visual" aria-hidden />
         <div className="about-copy">
-          <p className="eyebrow">About</p>
+          <p className="eyebrow">About me</p>
           <h1>{story?.storyTitle || 'Radhika Khandelwal'}</h1>
           <p className="lead">
             {story?.storyBody ||

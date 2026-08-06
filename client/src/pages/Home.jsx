@@ -136,7 +136,7 @@ export default function Home() {
         <section className="section">
           <div className="container">
             <div className="section-head">
-              <h2>From the journal</h2>
+              <h2>Articles</h2>
               <Link to="/journal" className="text-link">
                 View all
               </Link>

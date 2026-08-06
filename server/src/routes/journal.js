@@ -48,6 +48,8 @@ router.post('/', authRequired, async (req, res) => {
       excerpt = '',
       content = '',
       coverImage = '',
+      contentImages = {},
+      fonts,
       publishedAt,
       published = true,
       slug,
@@ -61,6 +63,8 @@ router.post('/', authRequired, async (req, res) => {
       excerpt,
       content,
       coverImage,
+      contentImages,
+      fonts,
       publishedAt: publishedAt || Date.now(),
       published,
     });

@@ -25,15 +25,24 @@ async function ensureAdmin() {
     return;
   }
 
-  let user = await User.findOne({ email });
+  const passwordHash = await bcrypt.hash(password, 10);
+  const user = await User.findOne({ email });
   if (!user) {
-    const passwordHash = await bcrypt.hash(password, 10);
-    user = await User.create({ email, passwordHash, role: 'admin' });
+    await User.create({ email, passwordHash, role: 'admin' });
     console.log(`Admin user created: ${email}`);
+  } else {
+    user.passwordHash = passwordHash;
+    user.role = 'admin';
+    await user.save();
+    console.log(`Admin user synced: ${email}`);
   }
 }
 
 async function start() {
+  if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET is not set — required for admin login');
+  }
+
   await connectDB();
   await ensureAdmin();
 

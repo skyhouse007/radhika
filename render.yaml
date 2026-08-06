@@ -25,7 +25,7 @@ services:
       - key: INSTAGRAM_URL
         sync: false
       - key: CLIENT_URL
-        sync: false
+        value: https://www.radhikakhandelwal.com,https://radhikakhandelwal.com
 
   - type: web
     name: radhika-web

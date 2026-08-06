@@ -1,37 +1,28 @@
-# Render deploy
+# Deploy
 
-## Why `/admin` returns 404
+Your domain (`www.radhikakhandelwal.com`) is on **Vercel**. The API is on **Render**.
 
-The site is a React SPA. The host must **rewrite all routes to `index.html`**.
-Without that, `https://www.radhikakhandelwal.com/admin` looks for a real `/admin` folder and fails.
-
-### Fix on Render Static Site (frontend)
-
-**Redirects / Rewrites** (Dashboard → your static site → Redirects/Rewrites):
-
-| Source | Destination | Action |
-|---|---|---|
-| `/*` | `/index.html` | **Rewrite** |
-
-Then redeploy / clear cache.
-
-### Static site settings
+## Frontend (Vercel)
 
 | Setting | Value |
 |---|---|
 | Root Directory | `client` |
 | Build Command | `npm install && npm run build` |
-| Publish Directory | `dist` |
+| Output Directory | `dist` |
 
-Client env (Build):
+`client/vercel.json` rewrites all routes to `index.html` (fixes `/admin` 404).
+
+### Environment variable (Production)
+
+In Vercel → Project → Settings → Environment Variables:
 
 ```
-VITE_API_URL=https://YOUR-API.onrender.com
+VITE_API_URL=https://radhika-6rzf.onrender.com
 ```
 
-(Use your real API URL, no trailing slash.)
+No trailing slash. Redeploy after saving (Vite bakes this in at build time).
 
-## Web Service (API)
+## API (Render Web Service)
 
 | Setting | Value |
 |---|---|
@@ -39,7 +30,7 @@ VITE_API_URL=https://YOUR-API.onrender.com
 | Build Command | `npm install` |
 | Start Command | `node server.js` |
 
-API env:
+### Environment variables
 
 ```
 NODE_VERSION=20
@@ -52,6 +43,8 @@ WHATSAPP_NUMBER=918385966614
 INSTAGRAM_URL=https://www.instagram.com/khandelwal_radhika_/
 CLIENT_URL=https://www.radhikakhandelwal.com,https://radhikakhandelwal.com
 ```
+
+`JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` must all be set or admin login returns 500.
 
 ## Console noise
 

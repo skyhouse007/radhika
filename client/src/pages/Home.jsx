@@ -121,7 +121,14 @@ export default function Home() {
 
       <section className="section newsletter-section">
         <div className="newsletter-artboard" aria-hidden>
-          <img src="/images/hero-studio.png" alt="" />
+          <img
+            src={
+              story?.heroImage
+                ? mediaUrl(story.heroImage)
+                : '/images/hero-studio.png'
+            }
+            alt=""
+          />
         </div>
         <div className="container newsletter-block">
           <div className="newsletter-copy">

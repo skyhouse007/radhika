@@ -575,6 +575,9 @@ p {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(90, 78, 62, 0.45), transparent 55%),
+    linear-gradient(145deg, #2a2420 0%, #121212 55%, #1a1816 100%);
 }
 
 .newsletter-artboard img {
@@ -591,7 +594,7 @@ p {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(18, 18, 18, 0.55) 0%, rgba(18, 18, 18, 0.72) 100%),
+    linear-gradient(180deg, rgba(18, 18, 18, 0.45) 0%, rgba(18, 18, 18, 0.68) 100%),
     repeating-linear-gradient(
       0deg,
       transparent,
